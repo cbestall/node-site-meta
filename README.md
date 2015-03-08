@@ -10,12 +10,13 @@ Example usage:
 
 This will return an object
 
-    url,
-    meta : {
-        title
-        description
-        feeds (rss and atom)
-        og (open graph)
+    {   url,
+        meta : {
+            title
+            description
+            feeds (rss and atom)
+            og (open graph)
+        }
     }
 
   
