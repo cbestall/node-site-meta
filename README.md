@@ -9,9 +9,15 @@ Example usage:
     SiteMeta.parse( 'http://google.com', function( err, meta ) { if( !err ) console.log( meta ); } );
 
 This will return an object
+
     url,
-    meta
-      title
-      description
-      feeds (rss and atom)
+    meta : {
+        title
+        description
+        feeds (rss and atom)
+        og (open graph)
+    }
+
   
+  
+ 
