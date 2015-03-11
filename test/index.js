@@ -54,9 +54,9 @@ describe('Parse Function', function () {
   
 });
 
-describe( "Parse Results", function () {
+describe( "Parse Results for Valid HTML", function () {
   
-  it("shoud not find a description", function ( done ) {
+  it("shoud not find a non-existent description", function ( done ) {
     
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
@@ -83,14 +83,16 @@ describe( "Parse Results", function () {
     
   }); 
   
-  it("shoud find a title", function ( done ) {
+  it("shoud find a title and description in mixed case tags", function ( done ) {
     
-    createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
+    createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
-    SiteMeta.parse( 'https://news.ycombinator.com/', function( err, o ) {
-
+    SiteMeta.parse( 'http://mixedcase.com', function( err, o ) {
+console.log(o);
       should.not.exist( err );
-      o.title.should.equal("Hacker News");
+      o.title.should.equal("Mixed Case Test Site");
+      o.description.should.equal("A Fixture for mixed case meta tags");
+      o.feeds.should.have.length.of.at.least(2);
       done();
     });    
     
@@ -99,10 +101,3 @@ describe( "Parse Results", function () {
   
 });
 
-
-
-// request("https://news.ycombinator.com/",function (error, response, body) {
-  // console.log(error);
-  // console.log(response);
-//   console.log(body);
-// })
