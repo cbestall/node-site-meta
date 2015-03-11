@@ -88,7 +88,6 @@ describe( "Parse Results for Valid HTML", function () {
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
     SiteMeta.parse( 'http://mixedcase.com', function( err, o ) {
-console.log(o);
       should.not.exist( err );
       o.title.should.equal("Mixed Case Test Site");
       o.description.should.equal("A Fixture for mixed case meta tags");
@@ -100,4 +99,45 @@ console.log(o);
   
   
 });
+
+
+
+describe( "Open Graph Properties", function () {
+  
+  it("should return title, type, image, description, and site_name", function( done ) {
+    
+    createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
+
+    SiteMeta.parse( 'http://mixedcase.com', function( err, o ) {
+      
+      should.not.exist( err );
+      o.og.title.should.equal("Open Graph Title");
+      o.og.type.should.equal("Open Graph Type");
+      o.og.url.should.equal("http://mixedcase.com/og");
+      o.og.site_name.should.equal("Mixed Case OG");
+      o.og.description.should.equal("");
+      done();
+    });      
+    
+  });
+  
+  it("should return empty title, type, image, description, and site_name", function( done ) {
+    
+    createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
+
+    SiteMeta.parse( 'https://news.ycombinator.com/', function( err, o ) {
+      
+      should.not.exist( err );
+      o.og.title.should.equal("");
+      o.og.type.should.equal("");
+      o.og.url.should.equal("");
+      o.og.description.should.equal("");
+      o.og.site_name.should.equal("");
+      done();
+    });      
+    
+  });  
+  
+});
+  
 
