@@ -4,7 +4,7 @@
   "description": "Parse meta data from a specific site, which contains title, description, feeds, etc.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "test/index.js"
+    "test": "node_modules/mocha/bin/mocha test/index.js"
   },
   "keywords": [
     "metadata",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "mocha": "^2.2.1",
-    "nock": "^1.1.0"
+    "nock": "^1.1.0",
+    "chai": "^2.1.1"
   }
 }
