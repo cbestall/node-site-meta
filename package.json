@@ -1,6 +1,6 @@
 {
   "name": "site-meta",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Parse meta data from a specific site, which contains title, description, feeds, etc.",
   "main": "lib/index.js",
   "scripts": {
