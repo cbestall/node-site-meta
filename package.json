@@ -10,7 +10,8 @@
     "metadata",
     "feed",
     "rss",
-    "atom"
+    "atom",
+    "scrape"
   ],
   "author": "Chris Bestall <chris.bestall@gmail.com>",
   "license": "ISC",
