@@ -29,3 +29,11 @@ This will return an object
     }
 
 
+CLI usage:
+
+    $ site-meta http://yahoo.com http://github.com
+    Scraping http://github.com: 433ms
+    {...}
+    Scraping http://github.com: 511ms
+    {...}
+
