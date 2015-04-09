@@ -2,6 +2,10 @@
   "name": "site-meta",
   "version": "0.0.1",
   "description": "Parse meta data from a specific site, which contains title, description, feeds, etc.",
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/cbestall/node-site-meta"
+  },
   "main": "lib/index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha test/index.js"
