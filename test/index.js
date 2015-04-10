@@ -20,7 +20,7 @@ describe('Parse Function', function () {
         
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
-    SiteMeta.parse( 'https://news.ycombinator.com/', function( err, o ) {
+    SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
       o.should.be.an('object');
       done();
     });
@@ -30,7 +30,7 @@ describe('Parse Function', function () {
   
   it('should return an error for invalid URL', function (done) {
         
-    SiteMeta.parse( '', function( err, o ) {
+    SiteMeta.scrape( '', function( err, o ) {
       should.exist( err );
       should.not.exist( o );
       done();
@@ -42,7 +42,7 @@ describe('Parse Function', function () {
         
     createNock( 'https://news.ycombinator.com/', 500 );
         
-    SiteMeta.parse( 'https://news.ycombinator.com/', function( err, o ) {
+    SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
 
       should.exist( err );
       should.not.exist( o );
@@ -60,10 +60,10 @@ describe( "Parse Results for Valid HTML", function () {
     
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
-    SiteMeta.parse( 'https://news.ycombinator.com/', function( err, o ) {
+    SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
 
       should.not.exist( err );
-      o.description.should.equal("");
+      o.meta.description.should.equal("");
       done();
     });    
     
@@ -73,11 +73,11 @@ describe( "Parse Results for Valid HTML", function () {
     
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
-    SiteMeta.parse( 'https://news.ycombinator.com/', function( err, o ) {
+    SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
 
       should.not.exist( err );
-      o.feeds.should.be.instanceof(Array);
-      o.feeds[0].should.equal("https://news.ycombinator.com/rss");
+      o.meta.feeds.should.be.instanceof(Array);
+      o.meta.feeds[0].should.equal("https://news.ycombinator.com/rss");
       done();
     });    
     
@@ -87,11 +87,11 @@ describe( "Parse Results for Valid HTML", function () {
     
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
-    SiteMeta.parse( 'http://mixedcase.com', function( err, o ) {
+    SiteMeta.scrape( 'http://mixedcase.com', function( err, o ) {
       should.not.exist( err );
-      o.title.should.equal("Mixed Case Test Site");
-      o.description.should.equal("A Fixture for mixed case meta tags");
-      o.feeds.should.have.length.of.at.least(2);
+      o.meta.title.should.equal("Mixed Case Test Site");
+      o.meta.description.should.equal("A Fixture for mixed case meta tags");
+      o.meta.feeds.should.have.length.of.at.least(2);
       done();
     });    
     
@@ -108,14 +108,14 @@ describe( "Open Graph Properties", function () {
     
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
-    SiteMeta.parse( 'http://mixedcase.com', function( err, o ) {
+    SiteMeta.scrape( 'http://mixedcase.com', function( err, o ) {
       
       should.not.exist( err );
-      o.og.title.should.equal("Open Graph Title");
-      o.og.type.should.equal("Open Graph Type");
-      o.og.url.should.equal("http://mixedcase.com/og");
-      o.og.site_name.should.equal("Mixed Case OG");
-      o.og.description.should.equal("");
+      o.meta.og.title.should.equal("Open Graph Title");
+      o.meta.og.type.should.equal("Open Graph Type");
+      o.meta.og.url.should.equal("http://mixedcase.com/og");
+      o.meta.og.site_name.should.equal("Mixed Case OG");
+      o.meta.og.description.should.equal("");
       done();
     });      
     
@@ -125,18 +125,40 @@ describe( "Open Graph Properties", function () {
     
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
-    SiteMeta.parse( 'https://news.ycombinator.com/', function( err, o ) {
+    SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
       
       should.not.exist( err );
-      o.og.title.should.equal("");
-      o.og.type.should.equal("");
-      o.og.url.should.equal("");
-      o.og.description.should.equal("");
-      o.og.site_name.should.equal("");
+      o.meta.og.title.should.equal("");
+      o.meta.og.type.should.equal("");
+      o.meta.og.url.should.equal("");
+      o.meta.og.description.should.equal("");
+      o.meta.og.site_name.should.equal("");
       done();
     });      
     
   });  
+  
+});
+
+
+describe( "Twitter Properties", function () {
+  
+  
+ it("should return twitter card information", function( done ) {
+    
+    createNock( 'http://fodors.com', 200, 'twittercards.html' );
+
+    SiteMeta.scrape( 'http://fodors.com/', function( err, o ) {
+
+      should.not.exist( err );
+      o.meta.twitter.title.should.equal("America's Best Small Towns");
+      o.meta.twitter.description.should.equal("For the second year in a row, we've compiled a list that highlights some of the best places in the country you don't hear about every day.");
+      o.meta.twitter.url.should.equal("http://www.fodors.com/news/photos/americas-best-small-towns");
+      done();
+    });      
+    
+  });  
+    
   
 });
   
