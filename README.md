@@ -4,7 +4,7 @@ Package intended to parse a site's meta data.  A simple parser, which accepts in
 
 Installation:
 
-    npm install site-meta
+    $ npm install site-meta
 
 Example usage:
 
@@ -51,6 +51,6 @@ CLI usage:
 
 Unit Tests
 
-    npm install // Install Dev Dependencies
+    $ npm install // Install Dev Dependencies
 
-    npm test // Runs Tests
+    $ npm test // Runs Tests
