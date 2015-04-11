@@ -35,6 +35,7 @@ This will return an object
                 title: String,
                 url: String,
                 description: String,
+                creator: String,
                 image: String
             }
         }

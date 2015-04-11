@@ -14,50 +14,50 @@ function createNock( url, status, file ) {
   return scope;
 }
 
-describe('Parse Function', function () {
-  
+describe('Scrape Function', function () {
+
   it('should return an object', function (done) {
-        
+
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
     SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
       o.should.be.an('object');
       done();
     });
-    
+
   });
-  
-  
+
+
   it('should return an error for invalid URL', function (done) {
-        
+
     SiteMeta.scrape( '', function( err, o ) {
       should.exist( err );
       should.not.exist( o );
       done();
     });
-    
-  });  
-  
+
+  });
+
   it('should return an error for a server error', function (done) {
-        
+
     createNock( 'https://news.ycombinator.com/', 500 );
-        
+
     SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
 
       should.exist( err );
       should.not.exist( o );
       done();
     });
-    
-  });  
-  
-  
+
+  });
+
+
 });
 
-describe( "Parse Results for Valid HTML", function () {
-  
+describe( "Scrape Results for Valid HTML", function () {
+
   it("shoud not find a non-existent description", function ( done ) {
-    
+
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
     SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
@@ -65,12 +65,12 @@ describe( "Parse Results for Valid HTML", function () {
       should.not.exist( err );
       o.meta.description.should.equal("");
       done();
-    });    
-    
+    });
+
   });
-  
+
   it("shoud find a feed", function ( done ) {
-    
+
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
     SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
@@ -79,12 +79,12 @@ describe( "Parse Results for Valid HTML", function () {
       o.meta.feeds.should.be.instanceof(Array);
       o.meta.feeds[0].should.equal("https://news.ycombinator.com/rss");
       done();
-    });    
-    
-  }); 
-  
+    });
+
+  });
+
   it("shoud find a title and description in mixed case tags", function ( done ) {
-    
+
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
     SiteMeta.scrape( 'http://mixedcase.com', function( err, o ) {
@@ -93,23 +93,23 @@ describe( "Parse Results for Valid HTML", function () {
       o.meta.description.should.equal("A Fixture for mixed case meta tags");
       o.meta.feeds.should.have.length.of.at.least(2);
       done();
-    });    
-    
-  });   
-  
-  
+    });
+
+  });
+
+
 });
 
 
 
 describe( "Open Graph Properties", function () {
-  
+
   it("should return title, type, image, description, and site_name", function( done ) {
-    
+
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
     SiteMeta.scrape( 'http://mixedcase.com', function( err, o ) {
-      
+
       should.not.exist( err );
       o.meta.og.title.should.equal("Open Graph Title");
       o.meta.og.type.should.equal("Open Graph Type");
@@ -117,16 +117,16 @@ describe( "Open Graph Properties", function () {
       o.meta.og.site_name.should.equal("Mixed Case OG");
       o.meta.og.description.should.equal("");
       done();
-    });      
-    
+    });
+
   });
-  
+
   it("should return empty title, type, image, description, and site_name", function( done ) {
-    
+
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
     SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
-      
+
       should.not.exist( err );
       o.meta.og.title.should.equal("");
       o.meta.og.type.should.equal("");
@@ -134,18 +134,18 @@ describe( "Open Graph Properties", function () {
       o.meta.og.description.should.equal("");
       o.meta.og.site_name.should.equal("");
       done();
-    });      
-    
-  });  
-  
+    });
+
+  });
+
 });
 
 
 describe( "Twitter Properties", function () {
-  
-  
+
+
  it("should return twitter card information", function( done ) {
-    
+
     createNock( 'http://fodors.com', 200, 'twittercards.html' );
 
     SiteMeta.scrape( 'http://fodors.com/', function( err, o ) {
@@ -154,12 +154,14 @@ describe( "Twitter Properties", function () {
       o.meta.twitter.title.should.equal("America's Best Small Towns");
       o.meta.twitter.description.should.equal("For the second year in a row, we've compiled a list that highlights some of the best places in the country you don't hear about every day.");
       o.meta.twitter.url.should.equal("http://www.fodors.com/news/photos/americas-best-small-towns");
+      o.meta.twitter.url.should.equal("http://www.fodors.com/news/photos/americas-best-small-towns");
+      o.meta.twitter.creator.should.equal("@fodorstravel");
       done();
-    });      
-    
-  });  
-    
-  
+    });
+
+  });
+
+
 });
-  
+
 
