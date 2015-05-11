@@ -1,8 +1,8 @@
 {
   "name": "site-meta",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Parse meta data from a specific site, which contains title, description, feeds, etc.",
-  "repository" : { 
+  "repository" : {
     "type" : "git",
     "url" : "https://github.com/cbestall/node-site-meta"
   },
