@@ -58,22 +58,22 @@ describe('Scrape Function', function () {
 
 
 describe( "Favicon", function () {
-  
-  
+
+
  it("should find favicon with just icon", function( done ) {
-    
+
     createNock( 'http://fodors.com', 200, 'twittercards.html' );
 
     SiteMeta.scrape( 'http://fodors.com/', function( err, o ) {
       should.not.exist( err );
       o.meta.favicon.should.equal("http://fodors.com/favicon.png");
       done();
-    });      
-    
+    });
+
   });
-  
+
   it("should find favicon with shortcut icon", function ( done ) {
-    
+
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
     SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
@@ -81,25 +81,25 @@ describe( "Favicon", function () {
       should.not.exist( err );
       o.meta.favicon.should.equal("https://news.ycombinator.com/favicon.ico");
       done();
-    });    
-    
-  });  
-  
+    });
+
+  });
+
   it("should not find a favicon, return blank", function ( done ) {
-    
+
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
     SiteMeta.scrape( 'http://mixedcase.com', function( err, o ) {
       should.not.exist( err );
       o.meta.favicon.should.equal("");
       done();
-    });    
-    
-  });   
-    
-  
+    });
+
+  });
+
+
 });
-  
+
 
 
 describe( "Scrape Results for Valid HTML", function () {
@@ -126,6 +126,20 @@ describe( "Scrape Results for Valid HTML", function () {
       should.not.exist( err );
       o.meta.feeds.should.be.instanceof(Array);
       o.meta.feeds[0].should.equal("https://news.ycombinator.com/rss");
+      done();
+    });
+
+  });
+
+  it("shoud find a feed with a querystring", function ( done ) {
+
+    createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
+
+    SiteMeta.scrape( 'http://mixedcase.com', function( err, o ) {
+
+      should.not.exist( err );
+      o.meta.feeds.should.be.instanceof(Array);
+      o.meta.feeds[0].should.equal("http://feeds.feedburner.com/mixedcase?type=latest&other=none");
       done();
     });
 
@@ -211,5 +225,3 @@ describe( "Twitter Properties", function () {
 
 
 });
-
-
