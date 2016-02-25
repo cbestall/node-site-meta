@@ -54,6 +54,33 @@ describe('Scrape Function', function () {
 
 });
 
+describe( "HTML vs RSS", function () {
+
+  it('should be an RSS object', function(done){
+    createNock( 'https://rss.ycombinator.com/', 200, 'atom.xml' );
+
+    SiteMeta.scrape( 'https://rss.ycombinator.com/', function( err, o ) {
+      should.not.exist(err);
+      o.type.should.equal("rss");
+      done();
+    });
+
+});
+
+
+
+  it('should be an HTML object', function(done){
+    createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
+
+    SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
+      should.not.exist(err);
+      o.type.should.equal("html");
+      done();
+    });
+
+  });
+
+})
 
 
 
@@ -104,7 +131,7 @@ describe( "Favicon", function () {
 
 describe( "Scrape Results for Valid HTML", function () {
 
-  it("shoud not find a non-existent description", function ( done ) {
+  it("should not find a non-existent description", function ( done ) {
 
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
@@ -117,7 +144,7 @@ describe( "Scrape Results for Valid HTML", function () {
 
   });
 
-  it("shoud find a feed", function ( done ) {
+  it("should find a feed", function ( done ) {
 
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
@@ -131,7 +158,7 @@ describe( "Scrape Results for Valid HTML", function () {
 
   });
 
-  it("shoud find a feed with a querystring", function ( done ) {
+  it("should find a feed with a querystring", function ( done ) {
 
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
@@ -145,7 +172,7 @@ describe( "Scrape Results for Valid HTML", function () {
 
   });
 
-  it("shoud find a title and description in mixed case tags", function ( done ) {
+  it("should find a title and description in mixed case tags", function ( done ) {
 
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 

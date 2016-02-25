@@ -1,8 +1,8 @@
 {
   "name": "site-meta",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Parse meta data from a specific site, which contains title, description, feeds, etc.",
-  "repository" : { 
+  "repository" : {
     "type" : "git",
     "url" : "https://github.com/cbestall/node-site-meta"
   },
@@ -24,8 +24,8 @@
   "author": "Chris Bestall <chris.bestall@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^0.18.0",
-    "request": "^2.53.0"
+    "cheerio": "^0.20.0",
+    "request": "^2.69.0"
   },
   "devDependencies": {
     "mocha": "^2.2.1",

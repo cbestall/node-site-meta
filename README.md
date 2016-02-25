@@ -16,7 +16,9 @@ Example usage:
 
 This will return an object
 
-    {   url : String,
+    {   
+        url  : String,
+        type : String (HTML, RSS, Unknown),
         meta : {
             title: String
             description: String
@@ -43,8 +45,8 @@ This will return an object
     }
 
 
-Unit Tests
+Tests
 
-    $ npm install // Install Dev Dependencies
+    $ npm install // Install Dependencies
 
     $ npm test // Runs Tests

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:media="http://search.yahoo.com/mrss/"
+	>
+
+<channel>
+	<title>Labs</title>
+	<atom:link href="https://labs.spotify.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://labs.spotify.com</link>
+	<description>Spotify&#039;s Engineering and Technology Blog</description>
+	<lastBuildDate>Tue, 23 Feb 2016 07:44:58 +0000</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.com/</generator>
+  <cloud domain='labs.spotify.com' port='80' path='/?rsscloud=notify' registerProcedure='' protocol='http-post' />
+  <image>
+		<url>https://secure.gravatar.com/blavatar/32b0dd23fccfaeac1245b71336a9fdc7?s=96&#038;d=https%3A%2F%2Fs2.wp.com%2Fi%2Fbuttonw-com.png</url>
+		<title>Labs</title>
+		<link>https://labs.spotify.com</link>
+	</image>
+	<atom:link rel="search" type="application/opensearchdescription+xml" href="https://labs.spotify.com/osd.xml" title="Labs" />
+	<atom:link rel='hub' href='https://labs.spotify.com/?pushpress=hub'/>
+	<item>
+		<title>Things We Learned Creating Technology Career Steps</title>
+		<link>https://labs.spotify.com/2016/02/22/things-we-learned-creating-technology-career-steps/</link>
+		<comments>https://labs.spotify.com/2016/02/22/things-we-learned-creating-technology-career-steps/#respond</comments>
+		<pubDate>Mon, 22 Feb 2016 09:42:34 +0000</pubDate>
+		<dc:creator><![CDATA[Kevin Goldsmith]]></dc:creator>
+				<category><![CDATA[Labs]]></category>
+		<category><![CDATA[engineering culture]]></category>
+		<category><![CDATA[personal development]]></category>
+
+		<guid isPermaLink="false">http://labs.spotify.com?p=1401&#038;preview_id=1401</guid>
+		<description><![CDATA[This is part three of a three-part series on how we created a career path framework for the individual contributors at Spotify. Part one discussed the process we used to formulate the framework. Part two contained version 1.0 of our framework. In this segment, I’ll talk about the lessons we learned rolling out the framework [&#8230;]<img alt="" border="0" src="https://pixel.wp.com/b.gif?host=labs.spotify.com&#038;blog=45123433&#038;post=1401&#038;subd=spotifylabscom&#038;ref=&#038;feed=1" width="1" height="1" />]]></description>
+				<content:encoded><![CDATA[<p><span style="font-weight:400;">This is part three of a three-part series on how we created a career path framework for the individual contributors at Spotify. </span><a href="https://labs.spotify.com/2016/02/08/technical-career-path/"><span style="font-weight:400;">Part one</span></a><span style="font-weight:400;"> discussed the process we used to formulate the framework. </span><a href="https://labs.spotify.com/2016/02/15/spotify-technology-career-steps/"><span style="font-weight:400;">Part two</span></a><span style="font-weight:400;"> contained version 1.0 of our framework. In this segment, I’ll talk about the lessons we learned rolling out the framework to the technology organization. If you haven’t read the first two parts, I suggest that you read those first before proceeding with this one.</span></p>
+<p><span style="font-weight:400;">In the process of leading the effort around career pathing in the technology organization at Spotify, I learned a tremendous amount. While I obviously spent more time thinking about how to motivate and incentivize employees than I ever had before, I also learned a lot more about my company and my coworkers than I had expected to. I was also reminded clearly how different my path had been than any of my fellow members of Technology. Things that I had learned experientially, I had to put reasoning and explanation behind and that was incredibly valuable. Many of our employees had never been at a company with career path support at all before. Those with experience at other companies that had career path frameworks, had not seen anything like the working group had created. As I talked with people individually and in small groups, I found better and better ways to articulate the reasoning behind the things that had just seemed obvious to us as we wrote the document. This helped us improve the document immeasurably and hopefully also has helped clarify the things that I’ve written about in these posts.</span></p>
+<p><span style="font-weight:400;">The effort of creating this framework also raised some issues in the organization that we’ll need to address as a group. The culture of Spotify is characterized by the Swedish word “</span><a href="https://en.wikipedia.org/wiki/Lagom"><span style="font-weight:400;">lagom</span></a><span style="font-weight:400;">.” We try to see each other always as equals. We encourage people to challenge their leaders if they don’t think they are right. As is reflected in the Steps document, we put higher value on strong teams than on strong individuals. We also imbue our teams and our individuals with autonomy in how they do their work. We tried to incorporate all of these ideas in our Career Steps. When people in the organization wish for more recognition and status to be reflected in our career pathing, is this counter to our culture, or is this indicative of the culture changing? What is the role of career pathing in enforcing a desired culture rather than supporting it? These are questions we’ll continue to look at as we evolve Career Steps.</span></p>
+<p><span style="font-weight:400;">Spotify is a unique company, with a singular culture. The specifics of what we created and the lessons that we learned may or may not apply to your company. In aggregate, hopefully you will find our experiences and learnings valuable as you think through how you want to do similar programs at your own company.</span></p>
+<p>&nbsp;</p><img alt="" border="0" src="https://pixel.wp.com/b.gif?host=labs.spotify.com&#038;blog=45123433&#038;post=1401&#038;subd=spotifylabscom&#038;ref=&#038;feed=1" width="1" height="1" />]]></content:encoded>
+			<wfw:commentRss>https://labs.spotify.com/2016/02/22/things-we-learned-creating-technology-career-steps/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+
+		<media:content url="https://1.gravatar.com/avatar/71a9a39cb97f8dc9d136a618b0e205e2?s=96&#38;d=identicon&#38;r=G" medium="image">
+			<media:title type="html">kevingoldsmithspotify</media:title>
+		</media:content>
+	</item>
+</channel>
+</rss>
