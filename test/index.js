@@ -153,6 +153,39 @@ describe( "Favicon", function () {
 });
 
 
+describe( "Canonical Value", function() {
+
+  it('should find a valid canonical value using bad case', function () {
+    createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
+
+    SiteMeta.scrape( 'http://mixedcase.com', function( err, o ) {
+      should.not.exist( err );
+      o.meta.canonical.should.equal("http://mixedcase.com");
+      done();
+    });
+  });
+
+  it('should find a valid canonical value', function () {
+    createNock( 'http://twittercards.com/', 200, 'twittercards.html' );
+
+    SiteMeta.scrape( 'http://twittercards.com', function( err, o ) {
+      should.not.exist( err );
+      o.meta.canonical.should.equal("http://twittercards.com");
+      done();
+    });
+  });
+
+  it('should find not a valid canonical value', function () {
+    createNock( 'http://twittercards.com/', 200, 'twittercards.html' );
+
+    SiteMeta.scrape( 'http://twittercards.com', function( err, o ) {
+      should.not.exist( err );
+      o.meta.canonical.should.equal("");
+      done();
+    });
+  });
+});
+
 
 describe( "Scrape Results for Valid HTML", function () {
 

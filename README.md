@@ -22,6 +22,7 @@ This will return an object
         meta : {
             title: String
             description: String
+            canonical: String
             feeds : Array,
             favicon : String,
             apple-touch-icon : Array,
