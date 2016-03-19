@@ -87,7 +87,7 @@ describe( "HTML vs RSS", function () {
 describe( "Favicon", function () {
 
 
-  it("should find favicon with just icon", function( done ) {
+  it("should find favicon not fluid icon", function( done ) {
 
     createNock( 'http://twittercards.com', 200, 'twittercards.html' );
 
