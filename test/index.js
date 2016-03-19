@@ -87,13 +87,27 @@ describe( "HTML vs RSS", function () {
 describe( "Favicon", function () {
 
 
- it("should find favicon with just icon", function( done ) {
+  it("should find favicon with just icon", function( done ) {
 
-    createNock( 'http://fodors.com', 200, 'twittercards.html' );
+    createNock( 'http://twittercards.com', 200, 'twittercards.html' );
 
-    SiteMeta.scrape( 'http://fodors.com/', function( err, o ) {
+    SiteMeta.scrape( 'http://twittercards.com/', function( err, o ) {
       should.not.exist( err );
-      o.meta.favicon.should.equal("http://fodors.com/favicon.png");
+      o.meta.favicon.should.equal("http://twittercards.com/favicon.png");
+      done();
+    });
+
+  });
+
+  it("should find apple-touch-icon", function( done ) {
+
+    createNock( 'http://twittercards.com', 200, 'twittercards.html' );
+
+    SiteMeta.scrape( 'http://twittercards.com/', function( err, o ) {
+      should.not.exist( err );
+      o.meta.apple_touch_icon.should.be.instanceof(Array);
+      o.meta.apple_touch_icon.should.have.length.of(10);
+      o.meta.apple_touch_icon[0].should.equal("http://twittercards.com/apple-touch-icon.png");
       done();
     });
 
@@ -124,6 +138,17 @@ describe( "Favicon", function () {
 
   });
 
+  it("should not find a apple-touch-icon, return empty array", function ( done ) {
+
+    createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
+
+    SiteMeta.scrape( 'http://mixedcase.com', function( err, o ) {
+      should.not.exist( err );
+      o.meta.apple_touch_icon.should.be.empty;
+      done();
+    });
+
+  });
 
 });
 
@@ -131,7 +156,7 @@ describe( "Favicon", function () {
 
 describe( "Scrape Results for Valid HTML", function () {
 
-  it("should not find a non-existent description", function ( done ) {
+it("should not find a non-existent description", function ( done ) {
 
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
@@ -144,7 +169,7 @@ describe( "Scrape Results for Valid HTML", function () {
 
   });
 
-  it("should find a feed", function ( done ) {
+it("should find a feed", function ( done ) {
 
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
@@ -158,7 +183,7 @@ describe( "Scrape Results for Valid HTML", function () {
 
   });
 
-  it("should find a feed with a querystring", function ( done ) {
+it("should find a feed with a querystring", function ( done ) {
 
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
@@ -172,7 +197,7 @@ describe( "Scrape Results for Valid HTML", function () {
 
   });
 
-  it("should find a title and description in mixed case tags", function ( done ) {
+it("should find a title and description in mixed case tags", function ( done ) {
 
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
@@ -235,16 +260,16 @@ describe( "Twitter Properties", function () {
 
  it("should return twitter card information", function( done ) {
 
-    createNock( 'http://fodors.com', 200, 'twittercards.html' );
+    createNock( 'http://twittercards.com', 200, 'twittercards.html' );
 
-    SiteMeta.scrape( 'http://fodors.com/', function( err, o ) {
+    SiteMeta.scrape( 'http://twittercards.com/', function( err, o ) {
 
       should.not.exist( err );
       o.meta.twitter.title.should.equal("America's Best Small Towns");
       o.meta.twitter.description.should.equal("For the second year in a row, we've compiled a list that highlights some of the best places in the country you don't hear about every day.");
-      o.meta.twitter.url.should.equal("http://www.fodors.com/news/photos/americas-best-small-towns");
-      o.meta.twitter.url.should.equal("http://www.fodors.com/news/photos/americas-best-small-towns");
-      o.meta.twitter.creator.should.equal("@fodorstravel");
+      o.meta.twitter.url.should.equal("http://www.twittercards.com/news/photos/americas-best-small-towns");
+      o.meta.twitter.url.should.equal("http://www.twittercards.com/news/photos/americas-best-small-towns");
+      o.meta.twitter.creator.should.equal("@twittercardstravel");
       done();
     });
 

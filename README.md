@@ -24,6 +24,7 @@ This will return an object
             description: String
             feeds : Array,
             favicon : String,
+            apple-touch-icon : Array,
             og : {
                 title: String,
                 type: String,
