@@ -1,6 +1,6 @@
 {
   "name": "site-meta",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Parse meta data from a specific site, which contains title, description, feeds, etc.",
   "repository" : {
     "type" : "git",
