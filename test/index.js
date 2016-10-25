@@ -24,9 +24,7 @@ describe('Scrape Function', function () {
       o.should.be.an('object');
       done();
     });
-
   });
-
 
   it('should return an error for invalid URL', function (done) {
 
@@ -35,7 +33,6 @@ describe('Scrape Function', function () {
       should.not.exist( o );
       done();
     });
-
   });
 
   it('should return an error for a server error', function (done) {
@@ -48,15 +45,14 @@ describe('Scrape Function', function () {
       should.not.exist( o );
       done();
     });
-
   });
-
 
 });
 
+
 describe( "HTML vs RSS", function () {
 
-  it('should be an RSS object', function(done){
+  it('should be an ATOM(rss) object', function(done){
     createNock( 'https://rss.ycombinator.com/', 200, 'atom.xml' );
 
     SiteMeta.scrape( 'https://rss.ycombinator.com/', function( err, o ) {
@@ -64,10 +60,7 @@ describe( "HTML vs RSS", function () {
       o.type.should.equal("rss");
       done();
     });
-
-});
-
-
+  });
 
   it('should be an HTML object', function(done){
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
@@ -77,7 +70,6 @@ describe( "HTML vs RSS", function () {
       o.type.should.equal("html");
       done();
     });
-
   });
 
 })
@@ -184,12 +176,13 @@ describe( "Canonical Value", function() {
       done();
     });
   });
+
 });
 
 
 describe( "Scrape Results for Valid HTML", function () {
 
-it("should not find a non-existent description", function ( done ) {
+  it("should not find a non-existent description", function ( done ) {
 
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
@@ -202,7 +195,7 @@ it("should not find a non-existent description", function ( done ) {
 
   });
 
-it("should find a feed", function ( done ) {
+  it("should find a feed", function ( done ) {
 
     createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
@@ -213,10 +206,21 @@ it("should find a feed", function ( done ) {
       o.meta.feeds[0].should.equal("https://news.ycombinator.com/rss");
       done();
     });
-
   });
 
-it("should find a feed with a querystring", function ( done ) {
+  it("should find only first title in RSS xml", function ( done ) {
+
+    createNock( 'https://news.ycombinator.com/', 200, 'atom.xml' );
+
+    SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
+
+      should.not.exist( err );
+      o.meta.title.should.equal("Labs");
+      done();
+    });
+  });
+
+  it("should find a feed with a querystring", function ( done ) {
 
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
@@ -230,7 +234,7 @@ it("should find a feed with a querystring", function ( done ) {
 
   });
 
-it("should find a title and description in mixed case tags", function ( done ) {
+  it("should find a title and description in mixed case tags", function ( done ) {
 
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
@@ -305,7 +309,6 @@ describe( "Twitter Properties", function () {
       o.meta.twitter.creator.should.equal("@twittercardstravel");
       done();
     });
-
   });
 
 
