@@ -1,16 +1,12 @@
 {
   "name": "site-meta",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Parse meta data from a specific site, which contains title, description, feeds, etc.",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/cbestall/node-site-meta"
-  },
-  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/cbestall/node-site-meta.git"
   },
+  "main": "lib/index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha test/index.js"
   },
@@ -25,6 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^0.20.0",
+    "detect-character-encoding": "^0.2.1",
+    "iconv": "^2.2.1",
     "request": "^2.69.0"
   },
   "devDependencies": {
