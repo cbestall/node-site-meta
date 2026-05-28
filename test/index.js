@@ -98,7 +98,7 @@ describe( "Favicon", function () {
     SiteMeta.scrape( 'http://twittercards.com/', function( err, o ) {
       should.not.exist( err );
       o.meta.apple_touch_icon.should.be.instanceof(Array);
-      o.meta.apple_touch_icon.should.have.length.of(10);
+      o.meta.apple_touch_icon.should.have.lengthOf(10);
       o.meta.apple_touch_icon[0].should.equal("http://twittercards.com/apple-touch-icon.png");
       done();
     });
@@ -147,30 +147,30 @@ describe( "Favicon", function () {
 
 describe( "Canonical Value", function() {
 
-  it('should find a valid canonical value using bad case', function () {
+  it('should find a valid canonical value using bad case', function ( done ) {
     createNock( 'http://mixedcase.com/', 200, 'mixedcase.html' );
 
     SiteMeta.scrape( 'http://mixedcase.com', function( err, o ) {
       should.not.exist( err );
-      o.meta.canonical.should.equal("http://mixedcase.com");
+      o.meta.canonical.should.equal("http://www.mixedcase.com");
       done();
     });
   });
 
-  it('should find a valid canonical value', function () {
+  it('should find a valid canonical value', function ( done ) {
     createNock( 'http://twittercards.com/', 200, 'twittercards.html' );
 
     SiteMeta.scrape( 'http://twittercards.com', function( err, o ) {
       should.not.exist( err );
-      o.meta.canonical.should.equal("http://twittercards.com");
+      o.meta.canonical.should.equal("http://www.twittercards.com");
       done();
     });
   });
 
-  it('should find not a valid canonical value', function () {
-    createNock( 'http://twittercards.com/', 200, 'twittercards.html' );
+  it('should not find a canonical value when none is present', function ( done ) {
+    createNock( 'https://news.ycombinator.com/', 200, 'hackernews.html' );
 
-    SiteMeta.scrape( 'http://twittercards.com', function( err, o ) {
+    SiteMeta.scrape( 'https://news.ycombinator.com/', function( err, o ) {
       should.not.exist( err );
       o.meta.canonical.should.equal("");
       done();
